@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\products;
+use App\Models\sections;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -14,7 +15,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products = products::all();
+        $sections = sections::all();
+
+        return view('products.product', compact('sections', 'products'));
     }
 
     /**
@@ -24,7 +28,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +39,16 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        products::create([
+            'Product_name' => $request->Product_name,
+             'description' => $request->description,
+            'section_id' => $request->section_id,
+
+        ]);
+        session()->flash('Add', 'تم إضافة القسم بنجاح');
+        return redirect('/product');
+        // return $request;
     }
 
     /**
@@ -67,9 +80,22 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, products $products)
+    public function update(Request $request)
     {
-        //
+        $id = sections::where('section_name', $request->section_name)->first()->id;
+
+        $Products = products::findOrFail($request->pro_id);
+
+        $Products->update([
+        'Product_name' => $request->Product_name,
+        // 'section_name' => $request->section_name,
+        'description' => $request->description,
+        'section_id' => $id,
+        ]);
+
+        session()->flash('Edit', 'تم تعديل المنتج بنجاح');
+        return back();
+        // return redirect('/product');
     }
 
     /**
@@ -78,8 +104,12 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(products $products)
+    public function destroy(Request $request)
     {
-        //
+        $Products = products::findOrFail($request->pro_id);
+         $Products->delete();
+         session()->flash('delete', 'تم حذف المنتج بنجاح');
+        return back();
+
     }
 }

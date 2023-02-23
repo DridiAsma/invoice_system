@@ -5,7 +5,7 @@ use App\Http\Controllers\InvoicesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Auth::routes();
+// Auth::routes();
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -17,6 +17,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::resource('index', [InvoicesController::class]);
 Route::resource('index', 'App\Http\Controllers\InvoicesController');
 Route::resource('section', 'App\Http\Controllers\SectionsController');
+Route::resource('product', 'App\Http\Controllers\ProductsController');
 Route::get('/{page}', 'AdminController@index');
 
 

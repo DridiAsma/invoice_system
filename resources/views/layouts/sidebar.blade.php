@@ -228,7 +228,7 @@
 										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/9.jpg')}}"><span class="avatar-status bg-success"></span></span>
 									</div>
 									<div>
-										<strong>Olivia</strong> Hey! there I' am available....
+										<strong>Olivia</strong> Hey! there Iam available....
 										<div class="small text-muted">
 											12 mintues ago
 										</div>

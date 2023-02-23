@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('css')
-<!---Internal  Prism css-->
+
 <link href="{{URL::asset('assets/plugins/prism/prism.css')}}" rel="stylesheet">
+
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->

@@ -40,7 +40,7 @@ class SectionsController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
+
 
         $validatedData = $request->validate([
             'section_name' => ['required', 'unique:sections', 'max:255'],
