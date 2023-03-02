@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    قائمة الفواتير
+    ارشيف الفواتير
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -18,7 +18,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
+                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ أرشيف
                     الفواتير</span>
             </div>
         </div>
@@ -28,7 +28,19 @@
 @endsection
 @section('content')
 
-    @if(session()->has('delete_invoice'))
+    @if (session()->has('archive_invoice'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "تم أرشفة الفاتورة بنجاح",
+                    type: "success"
+                })
+            }
+
+        </script>
+    @endif
+
+    @if (session()->has('delete_invoice'))
         <script>
             window.onload = function() {
                 notif({
@@ -36,32 +48,9 @@
                     type: "success"
                 })
             }
+
         </script>
     @endif
-
-
-    @if (session()->has('Status_Update'))
-        <script>
-            window.onload = function() {
-                notif({
-                    msg: "تم تحديث حالة الدفع بنجاح",
-                    type: "success"
-                })
-            }
-        </script>
-    @endif
-
-    @if (session()->has('restore_invoice'))
-        <script>
-            window.onload = function() {
-                notif({
-                    msg: "تم استعادة الفاتورة بنجاح",
-                    type: "success"
-                })
-            }
-        </script>
-    @endif
-
 
     <!-- row -->
     <div class="row">
@@ -69,22 +58,16 @@
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
+                    <div class="d-flex justify-content-between">
 
-                        <a href="index/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
-                                class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
-
-
-   <a class="modal-effect btn btn-sm btn-primary" href="#"
-                            style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
-
-
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'style="text-align: center">
+                        <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
                             <thead>
                                 <tr>
-                                    <th class="border-bottom-0"># </th>
+                                    <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">رقم الفاتورة</th>
                                     <th class="border-bottom-0">تاريخ القاتورة</th>
                                     <th class="border-bottom-0">تاريخ الاستحقاق</th>
@@ -110,23 +93,23 @@
                                     <tr>
                                         <td>{{ $i }}</td>
                                         <td>{{ $invoice->invoice_number }} </td>
-                                        <td>{{ $invoice->invoice_date }}</td>
-                                        <td>{{ $invoice->due_date }}</td>
+                                        <td>{{ $invoice->invoice_Date }}</td>
+                                        <td>{{ $invoice->Due_date }}</td>
                                         <td>{{ $invoice->product }}</td>
                                         <td><a
                                                 href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section->section_name }}</a>
                                         </td>
-                                        <td>{{ $invoice->discount }}</td>
-                                        <td>{{ $invoice->rate_vat}}</td>
-                                        <td>{{ $invoice->value_vat }}</td>
-                                        <td>{{ $invoice->total }}</td>
+                                        <td>{{ $invoice->Discount }}</td>
+                                        <td>{{ $invoice->Rate_VAT }}</td>
+                                        <td>{{ $invoice->Value_VAT }}</td>
+                                        <td>{{ $invoice->Total }}</td>
                                         <td>
-                                            @if ($invoice->value_status == 1)
-                                                <span class="text-succes">{{ $invoice->status }}</span>
-                                            @elseif($invoice->value_status == 2)
-                                                <span class="text-danger">{{ $invoice->status }}</span>
+                                            @if ($invoice->Value_Status == 1)
+                                                <span class="text-success">{{ $invoice->Status }}</span>
+                                            @elseif($invoice->Value_Status == 2)
+                                                <span class="text-danger">{{ $invoice->Status }}</span>
                                             @else
-                                                <span class="text-warning">{{ $invoice->status }}</span>
+                                                <span class="text-warning">{{ $invoice->Status }}</span>
                                             @endif
 
                                         </td>
@@ -138,37 +121,14 @@
                                                     class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                                 <div class="dropdown-menu tx-13">
-
-                                                        <a class="dropdown-item"
-                                                            href=" {{ url('edit_invoice') }}/{{ $invoice->id }}">تعديل
-                                                            الفاتورة</a>
-
-
-
-                                                        <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
-                                                            data-toggle="modal" data-target="#delete_invoice"><i
-                                                                class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
-                                                            الفاتورة</a>
-
-
-                                                            {{--  {{ URL::route('Status_show', [$invoice->id]) }}  --}}
-                                                        <a class="dropdown-item"
-                                                            href="#"><i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير
-                                                            حالة الدفع</a>
-
-
-                                                        <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
-                                                            data-toggle="modal" data-target="#Transfer_invoice"><i
-                                                                class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
-                                                            الارشيف</a>
-
-
-
-                                                        <a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"><i
-                                                                class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
-                                                            الفاتورة
-                                                        </a>
-
+                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                        data-toggle="modal" data-target="#Transfer_invoice"><i
+                                                            class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
+                                                        الفواتير</a>
+                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                        data-toggle="modal" data-target="#delete_invoice"><i
+                                                            class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
+                                                        الفاتورة</a>
                                                 </div>
                                             </div>
 
@@ -195,13 +155,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('index.destroy', 'test') }}" method="post">
+                    <form action="{{ route('Archive.destroy', 'test') }}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                 </div>
                 <div class="modal-body">
                     هل انت متاكد من عملية الحذف ؟
                     <input type="hidden" name="invoice_id" id="invoice_id" value="">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
@@ -212,25 +173,22 @@
         </div>
     </div>
 
-
-    <!-- ارشيف الفاتورة -->
-    <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <!--الغاء الارشفة-->
+    <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ارشفة الفاتورة</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">الغاء ارشفة الفاتورة</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('index.destroy', 'test') }}" method="post">
-                        {{ method_field('delete') }}
+                    <form action="{{ route('Archive.update', 'test') }}" method="post">
+                        {{ method_field('patch') }}
                         {{ csrf_field() }}
                 </div>
                 <div class="modal-body">
-                    هل انت متاكد من عملية الارشفة ؟
+                    هل انت متاكد من عملية الغاء الارشفة ؟
                     <input type="hidden" name="invoice_id" id="invoice_id" value="">
-                    <input type="hidden" name="id_page" id="id_page" value="2">
 
                 </div>
                 <div class="modal-footer">
@@ -248,8 +206,8 @@
     <!-- Container closed -->
     </div>
     <!-- main-content closed -->
-@endsection
-@section('js')
+ @endsection
+ @section('js')
     <!-- Internal Data tables -->
     <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
@@ -280,6 +238,7 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
+
     </script>
 
     <script>
@@ -289,12 +248,7 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
+
     </script>
-
-
-
-
-
-
 
 @endsection
