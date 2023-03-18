@@ -38,13 +38,13 @@
                             <div class="col">
                                 <label>تاريخ الفاتورة</label>
                                 <input class="form-control fc-datepicker" name="invoice_Date" placeholder="YYYY-MM-DD"
-                                    type="text" value="{{ $invoices->invoice_Date }}" required readonly>
+                                    type="text" value="{{ $invoices->invoice_date }}" required readonly>
                             </div>
 
                             <div class="col">
                                 <label>تاريخ الاستحقاق</label>
                                 <input class="form-control fc-datepicker" name="Due_date" placeholder="YYYY-MM-DD"
-                                    type="text" value="{{ $invoices->Due_date }}" required readonly>
+                                    type="text" value="{{ $invoices->due_date }}" required readonly>
                             </div>
 
                         </div>
@@ -92,17 +92,17 @@
 
                             <div class="col">
                                 <label for="inputName" class="control-label">الخصم</label>
-                                <input type="text" class="form-control form-control-lg" id="Discount" name="Discount"
+                                <input type="text" class="form-control form-control-lg" id="discount" name="discount"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                    value="{{ $invoices->Discount }}" required readonly>
+                                    value="{{ $invoices->discount }}" required readonly>
                             </div>
 
                             <div class="col">
                                 <label for="inputName" class="control-label">نسبة ضريبة القيمة المضافة</label>
-                                <select name="Rate_VAT" id="Rate_VAT" class="form-control" onchange="myFunction()" readonly>
+                                <select name="rate_vat" id="rate_vat" class="form-control" onchange="myFunction()" readonly>
                                     <!--placeholder-->
-                                    <option value=" {{ $invoices->Rate_VAT }}">
-                                        {{ $invoices->Rate_VAT }}
+                                    <option value=" {{ $invoices->rate_vat }}">
+                                        {{ $invoices->rate_vat }}
                                 </select>
                             </div>
 
@@ -113,14 +113,14 @@
                         <div class="row">
                             <div class="col">
                                 <label for="inputName" class="control-label">قيمة ضريبة القيمة المضافة</label>
-                                <input type="text" class="form-control" id="Value_VAT" name="Value_VAT"
-                                    value="{{ $invoices->Value_VAT }}" readonly>
+                                <input type="text" class="form-control" id="value_vat" name="value_vat"
+                                    value="{{ $invoices->value_vat }}" readonly>
                             </div>
 
                             <div class="col">
                                 <label for="inputName" class="control-label">الاجمالي شامل الضريبة</label>
-                                <input type="text" class="form-control" id="Total" name="Total" readonly
-                                    value="{{ $invoices->Total }}">
+                                <input type="text" class="form-control" id="total" name="total" readonly
+                                    value="{{ $invoices->total }}">
                             </div>
                         </div>
 

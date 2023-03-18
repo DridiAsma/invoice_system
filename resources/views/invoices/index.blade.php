@@ -74,8 +74,7 @@
                                 class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
 
 
-   <a class="modal-effect btn btn-sm btn-primary" href="#"
-                            style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
+   <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}" style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
 
 
                 </div>
@@ -151,9 +150,10 @@
                                                             الفاتورة</a>
 
 
-                                                            {{--  {{ URL::route('Status_show', [$invoice->id]) }}  --}}
+
                                                         <a class="dropdown-item"
-                                                            href="#"><i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير
+                                                            href="{{ URL::route('Status_show', [$invoice->id]) }}">
+                                                            <i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير
                                                             حالة الدفع</a>
 
 

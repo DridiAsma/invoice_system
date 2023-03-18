@@ -14,7 +14,7 @@ class InvoiceArchiveController extends Controller
     public function index()
     {
         $invoices = invoices::onlyTrashed()->get();
-        return view('Invoices.Archive_Invoices',compact('invoices'));
+        return view('invoices.Archive_Invoices',compact('invoices'));
     }
 
 

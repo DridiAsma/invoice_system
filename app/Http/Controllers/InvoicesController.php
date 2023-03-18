@@ -11,11 +11,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-// use App\Exports\InvoicesExport;
-use Maatwebsite\Excel\Facades\Excel;
+
 use App\Notifications\AddInvoice;
 use App\Exports\InvoicesExport;
 use App\Events\MyEventClass;
+use App\Notifications\InvoicePaid;
+
+use Illuminate\Support\Facades\Notification;
+
+use Maatwebsite\Excel\Facades\Excel;
 
 class InvoicesController extends Controller
 {
@@ -104,10 +108,10 @@ class InvoicesController extends Controller
             );
         }
 
-
-        $user = User::get();
         $invoices = invoices::latest()->first();
-        // Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
+        $user = User::get();
+        Notification::send($user, new InvoicePaid($invoices));
+
         // event(new MyEventClass('hello world'));
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
@@ -226,8 +230,8 @@ class InvoicesController extends Controller
         if ($request->Status === 'مدفوعة') {
 
             $invoices->update([
-                'Value_Status' => 1,
-                'Status' => $request->Status,
+                'value_status' => 1,
+                'status' => $request->Status,
                 'Payment_Date' => $request->Payment_Date,
             ]);
 
@@ -246,8 +250,8 @@ class InvoicesController extends Controller
 
         else {
             $invoices->update([
-                'Value_Status' => 3,
-                'Status' => $request->Status,
+                'status' => $request->Status,
+                'value_status' => 3,
                 'Payment_Date' => $request->Payment_Date,
             ]);
             invoices_Details::create([
@@ -295,12 +299,13 @@ class InvoicesController extends Controller
 
 
     //Function Export File Excel
-    // public function export()
-    // {
+    public function export()
+    {
 
-    //     return Excel::download(new InvoicesExport, 'invoices.xlsx');
 
-    // }
+        return Excel::download(new InvoicesExport, 'invoices.xlsx');
+
+    }
 
 
     public function MarkAsRead_all (Request $request)

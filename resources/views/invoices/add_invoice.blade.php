@@ -44,19 +44,22 @@
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form  action ="{{ route('index.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="{{ route('index.store') }}" method="post" enctype="multipart/form-data"
+                        autocomplete="off">
                         {{ csrf_field() }}
                         {{-- 1 --}}
 
                         <div class="row">
                             <div class="col">
                                 <label for="inputName" class="control-label">رقم الفاتورة</label>
-                                <input type="text" class="form-control" id="inputName" name="invoice_number" title="يرجي ادخال رقم الفاتورة" required>
+                                <input type="text" class="form-control" id="inputName" name="invoice_number"
+                                    title="يرجي ادخال رقم الفاتورة" required>
                             </div>
 
                             <div class="col">
                                 <label>تاريخ الفاتورة</label>
-                                <input class="form-control fc-datepicker" name="invoice_date" placeholder="YYYY-MM-DD" type="text" value="{{ date('Y-m-d') }}" required>
+                                <input class="form-control fc-datepicker" name="invoice_date" placeholder="YYYY-MM-DD"
+                                    type="text" value="{{ date('Y-m-d') }}" required>
                             </div>
 
                             <div class="col">
@@ -71,9 +74,8 @@
                         <div class="row">
                             <div class="col">
                                 <label for="inputName" class="control-label">القسم</label>
-                                <select name="Section" class="form-control SlectBox"
-                                 onclick="console.log($(this).val())"
-                                 onchange="console.log('change is firing')">
+                                <select name="Section" class="form-control SlectBox" onclick="console.log($(this).val())"
+                                    onchange="console.log('change is firing')">
                                     <!--placeholder-->
                                     <option value="">حدد القسم</option>
                                     @foreach ($sections as $section)
@@ -84,7 +86,7 @@
 
                             <div class="col">
                                 <label for="inputName" class="control-label">المنتج</label>
-                                <select name="product"  id="product" class="form-control">
+                                <select name="product" id="product" class="form-control">
 
 
 
@@ -157,12 +159,20 @@
                         <h5 class="card-title">المرفقات</h5>
 
                         <div class="col-sm-12 col-md-12">
-                            <input type="file" name="pic" class="dropify" accept=".pdf, .jpg, .png, image/jpeg, image/png"
-                                data-height="70" />
+                            <input type="file" name="pic" class="dropify"
+                                accept=".pdf, .jpg, .png, image/jpeg, image/png" data-height="70" />
                         </div><br>
 
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">حفظ البيانات</button>
+
+
+                        <div class="row row-xs wd-xl-80p d-flex justify-content-center">
+
+                            <div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
+                                <button type="submit" class="btn btn-secondary btn-block">حفظ البيانات</button>
+                            </div>
+                            <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
+                                <button type="submit" class="btn btn-success btn-block">Success</button>
+                            </div>
                         </div>
 
 
@@ -213,7 +223,7 @@
     </script>
 
     <script>
-         $(document).ready(function() {
+        $(document).ready(function() {
             $('select[name="Section"]').on('change', function() {
                 var SectionId = $(this).val();
                 if (SectionId) {
@@ -223,13 +233,16 @@
 
                         dataType: "json",
                         success: function(data) {
-                            if(data){
+                            if (data) {
                                 $('select[name="product"]').empty();
-                               $('select[name="product"]').append('<option value="">حدد المنتج</option>');
+                                $('select[name="product"]').append(
+                                    '<option value="">حدد المنتج</option>');
                                 $.each(data, function(key, value) {
-                                    $('select[name="product"]').append('<option value="' + value + '">' + value + '</option>');
+                                    $('select[name="product"]').append(
+                                        '<option value="' + value + '">' + value +
+                                        '</option>');
                                 });
-                            }else{
+                            } else {
                                 console.log('AJAX load did not work');
                                 $("#product").empty();
                             }

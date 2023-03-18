@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Role as ModelsRole;
-use App\Models\Role;
-use Illuminate\Foundation\Auth\User;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+// use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Arr;
+
+
 
 class UserController extends Controller
 {
@@ -82,7 +85,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = ModelsRole::pluck('name', 'name')->all();
+        $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
         return view('users.edit', compact('user', 'roles', 'userRole'));
     }
@@ -105,7 +108,7 @@ class UserController extends Controller
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
-            // $input = array_except($input, array('password'));
+            $input = Arr::except($input, array('password'));
         }
         $user = User::find($id);
         $user->update($input);
