@@ -16,7 +16,7 @@ use App\Notifications\AddInvoice;
 use App\Exports\InvoicesExport;
 use App\Events\MyEventClass;
 use App\Notifications\InvoicePaid;
-
+use App\Notifications\PushInvoices;
 use Illuminate\Support\Facades\Notification;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -93,6 +93,7 @@ class InvoicesController extends Controller
             $image = $request->file('pic');
             $file_name = $image->getClientOriginalName();
             $invoice_number = $request->invoice_number;
+
             $attachments = new invoices_attachments();
             $attachments->file_name = $file_name;
             $attachments->invoice_number = $invoice_number;
@@ -107,10 +108,20 @@ class InvoicesController extends Controller
                 $imageName
             );
         }
+          //Notification for email
+        // $invoices = invoices::latest()->first();
+        // $user = User::get();
+        // Notification::send($user, new InvoicePaid($invoices));
 
-        $invoices = invoices::latest()->first();
+         // notification for push notification
+
+         // view for all users notification
         $user = User::get();
-        Notification::send($user, new InvoicePaid($invoices));
+
+         // view for id user notification
+        //  $user = User::find(Auth::user()->id);
+        $invoices = invoices::latest()->first();
+        Notification::send($user, new PushInvoices($invoices));
 
         // event(new MyEventClass('hello world'));
 
@@ -197,7 +208,7 @@ class InvoicesController extends Controller
             Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
         }
 
-        // $invoices->forceDelete();
+        $invoices->forceDelete();
         session()->flash('delete_invoice');
         return redirect('/index');
     }

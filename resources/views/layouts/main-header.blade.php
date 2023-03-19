@@ -42,7 +42,7 @@
                     </form>
                 </div>
 
-
+                @can('الاشعارات')
                     <div class="dropdown nav-item main-header-notification">
                         <a class="new nav-link" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none"
@@ -60,12 +60,12 @@
                                 </div>
                                 <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">
                                 <h6 style="color: yellow" id="notifications_count">
-                                    {{--  {{ auth()->user()->unreadNotifications->count() }}  --}}
+                                    {{ auth()->user()->unreadNotifications->count() }}
                                 </h6>
                                 </p>
                             </div>
                             <div id="unreadNotifications">
-                                {{--  @foreach (auth()->user()->unreadNotifications as $notification)
+                                @foreach (auth()->user()->unreadNotifications as $notification)
                                     <div class="main-notification-list Notification-scroll">
                                         <a class="d-flex p-3 border-bottom"
                                             href="{{ url('InvoicesDetails') }}/{{ $notification->data['id'] }}">
@@ -80,12 +80,12 @@
                                             </div>
                                         </a>
                                     </div>
-                                @endforeach  --}}
+                                @endforeach
 
                             </div>
                         </div>
                     </div>
-
+                    @endcan
 
                 <div class="nav-item full-screen fullscreen-button">
                     <a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg"
@@ -99,11 +99,11 @@
                 </div>
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     <a class="profile-user d-flex" href=""><img alt=""
-                            src="{{ URL::asset('assets/img/faces/6.jpg') }}"></a>
+                            src="{{ URL::asset('assets/img/faces/avata.avif') }}"></a>
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
-                                <div class="main-img-user"><img alt="" src="{{ URL::asset('assets/img/faces/6.jpg') }}"
+                                <div class="main-img-user"><img alt="" src="{{ URL::asset('assets/img/faces/avata.avif') }}"
                                         class=""></div>
                                 <div class="mr-3 my-auto">
                                     <h6>{{ Auth::user()->name }}</h6><span>{{ Auth::user()->email }}</span>

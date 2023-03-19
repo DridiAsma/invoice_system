@@ -7,7 +7,7 @@
             <div class="dropdown user-pro-body">
                 <div class="">
                     <img alt="user-img" class="avatar avatar-xl brround"
-                        src="{{ URL::asset('assets/img/faces/6.jpg') }}"><span
+                        src="{{ URL::asset('assets/img/faces/avata.avif') }}"><span
                         class="avatar-status profile-status bg-green"></span>
                 </div>
                 <div class="user-info">
@@ -27,7 +27,7 @@
                             d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z" />
                     </svg><span class="side-menu__label">الرئيسية</span></a>
             </li>
-{{--  @can()  --}}
+  @can('الفواتير')
 
 
 
@@ -63,8 +63,9 @@
                 </ul>
             </li>
 
+@endcan()
 
-
+@can('التقارير')
             <li class="side-item side-item-category">التقارير</li>
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}"><svg
@@ -85,9 +86,9 @@
                 </ul>
             </li>
 
-
-
-            <li class="side-item side-item-category">المستخدمين</li>
+            @endcan()
+            @can('المستخدمين')
+            <li class="side-item side-item-category"> المستخدمين</li>
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}"><svg
                         xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
@@ -107,7 +108,8 @@
                 </ul>
             </li>
 
-
+            @endcan()
+            @can('الاعدادات')
             <li class="side-item side-item-category">الاعدادات</li>
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}"><svg
@@ -140,7 +142,7 @@
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'product')) }}">المنتجات</a></li>
                 </ul>
             </li>
-            {{--  @endcan  --}}
+           @endcan
         </ul>
     </div>
 </aside>

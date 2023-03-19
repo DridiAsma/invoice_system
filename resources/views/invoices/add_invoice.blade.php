@@ -170,9 +170,9 @@
                             <div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
                                 <button type="submit" class="btn btn-secondary btn-block">حفظ البيانات</button>
                             </div>
-                            <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
+                            {{--  <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
                                 <button type="submit" class="btn btn-success btn-block">Success</button>
-                            </div>
+                            </div>  --}}
                         </div>
 
 
