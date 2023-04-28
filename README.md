@@ -1,11 +1,3 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
 # Project Setup Guide
 
@@ -19,6 +11,12 @@ An MQTT Client built with [Laravel](https://laravel.com/), providing a set of fe
 - Logs that display all the received payloads and the ability to search, filter, and delete them.
 
 ![app showcase](public/assets/img/Capture1.PNG)
+![app showcase](public/assets/img/Capture2.PNG)
+![app showcase](public/assets/img/Capture22.PNG)
+![app showcase](public/assets/img/Capture4.PNG)
+![app showcase](public/assets/img/Capturejjjj.PNG)
+![app showcase](public/assets/img/Capture77.PNG)
+![app showcase](public/assets/img/Capture7899.PNG)
 
 ## Manual Setup
 > You can avoid this configurational step by using the [Docker installation process](#docker-setup).
