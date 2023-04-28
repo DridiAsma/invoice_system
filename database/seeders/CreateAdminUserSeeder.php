@@ -17,16 +17,13 @@ class CreateAdminUserSeeder extends Seeder
      *
      * @return void
      */
-    // public function run()
-    // {
-    //     //
-    // }
+
 
     public function run()
-{
-
+    {
+        /* Register for Admin */
          $user = User::create([
-        'name' => 'Administrat',
+        'name' => 'أسماء',
         'email' => 'admin@gmail.com',
         'password' => bcrypt('1234567'),
         'roles_name' => ["owner"],

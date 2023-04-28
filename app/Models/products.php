@@ -8,21 +8,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class products extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
-    // protected $fillable = [
-    //     'Product_name',
-    //      'section_name',
-    //     'description',
-    //     'section_id',
-
-    // ];
+   /**
+     * Section that belongs the products
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
 
    public function section(){
         return $this->belongsTo(sections::class);
     }
-    // public function section()
-    // {
-    // return $this->belongsTo('App\sections');
-    // }
+   
 }

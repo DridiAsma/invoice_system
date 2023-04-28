@@ -6,7 +6,7 @@
 <link href="{{URL::asset('assets/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
 @endsection
 @section('page-header')
-				<!-- breadcrumb -->
+
 				<div class="breadcrumb-header justify-content-between">
 					<div class="left-content">
 						<div>
@@ -31,10 +31,10 @@
 						</div>
 					</div>
 				</div>
-				<!-- /breadcrumb -->
+
 @endsection
 @section('content')
-				<!-- row -->
+				
 				<div class="row row-sm">
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-primary-gradient">
@@ -459,5 +459,5 @@
 <script src="{{URL::asset('assets/js/modal-popup.js')}}"></script>
 <!--Internal  index js -->
 <script src="{{URL::asset('assets/js/index.js')}}"></script>
-<script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>	
+<script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>
 @endsection

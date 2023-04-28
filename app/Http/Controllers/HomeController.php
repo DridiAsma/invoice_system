@@ -7,26 +7,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    // /**
-    //  * Create a new controller instance.
-    //  *
-    //  * @return void
-    //  */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    // /**
-    //  * Show the application dashboard.
-    //  *
-    //  * @return \Illuminate\Contracts\Support\Renderable
-    //  */
-    // public function index()
-    // {
-    //     return view('home');
-    // }
-
     /**
      * Create a new controller instance.
      *
@@ -34,32 +14,28 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        /** Auth Admin */
         $this->middleware('auth');
     }
 
     /**
      * Show the application dashboard.
-     *
+     * Statistical percentage of cases implementation
+     * 
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-
-//=================احصائية نسبة تنفيذ الحالات======================
-
-
-
       $count_all =invoices::count();
       $count_invoices1 = invoices::where('Value_Status', 1)->count();
       $count_invoices2 = invoices::where('Value_Status', 2)->count();
       $count_invoices3 = invoices::where('Value_Status', 3)->count();
 
-      if($count_invoices2 == 0){
+        if($count_invoices2 == 0){
           $nspainvoices2=0;
-      }
-      else{
+        }else{
           $nspainvoices2 = $count_invoices2/ $count_all*100;
-      }
+       }
 
         if($count_invoices1 == 0){
             $nspainvoices1=0;
@@ -74,8 +50,8 @@ class HomeController extends Controller
         else{
             $nspainvoices3 = $count_invoices3/ $count_all*100;
         }
-
-
+ 
+        /** Chart Js */
         $chartjs = app()->chartjs
             ->name('barChartTest')
             ->type('bar')
@@ -97,10 +73,7 @@ class HomeController extends Controller
                     'backgroundColor' => ['#ff9800'],
                     'data' => [$nspainvoices3]
                 ],
-
-
-            ])
-            ->options([]);
+            ])->options([]);
 
 
         $chartjs_2 = app()->chartjs
@@ -111,10 +84,9 @@ class HomeController extends Controller
             ->datasets([
                 [
                     'backgroundColor' => ['#c310c3', '#c34210','#ffeb3b'],
-                    'data' => [$nspainvoices2, $nspainvoices1,$nspainvoices3]
+                    'data' => [$nspainvoices2, $nspainvoices1, $nspainvoices3]
                 ]
-            ])
-            ->options([]);
+            ])->options([]);
 
         return view('home', compact('chartjs','chartjs_2'));
 

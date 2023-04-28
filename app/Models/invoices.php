@@ -32,6 +32,12 @@ class invoices extends Model
 
     protected $dates = ['deleted_at'];
 
+
+    /**
+     * Section that belongs the Invoices
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function section(){
         return $this->belongsTo(sections::class);
     }

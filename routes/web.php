@@ -5,7 +5,7 @@ use App\Http\Controllers\InvoicesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-// Auth::routes();
+/** Auth Admin*/
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -13,8 +13,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Route::resource('index', [InvoicesController::class]);
 
 Route::resource('index', 'App\Http\Controllers\InvoicesController');
 
@@ -77,19 +75,6 @@ Route::get('MarkAsRead_all','App\Http\Controllers\InvoicesController@MarkAsRead_
 Route::get('unreadNotifications_count', 'App\Http\Controllers\InvoicesController@unreadNotifications_count')->name('unreadNotifications_count');
 
 Route::get('unreadNotifications', 'App\Http\Controllers\InvoicesController@unreadNotifications')->name('unreadNotifications');
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Route::get('/{page}', 'AdminController@index');

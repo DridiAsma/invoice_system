@@ -17,7 +17,7 @@ class SectionsController extends Controller
     public function index()
     {
         $sections = sections::all();
-        return view('sections.section',compact('sections'));
+        return view('sections.section', compact('sections'));
     }
 
     /**
@@ -42,51 +42,32 @@ class SectionsController extends Controller
     {
 
 
-        $validatedData = $request->validate([
-            'section_name' => ['required', 'unique:sections', 'max:255'],
-            'description' => ['required'],
-        ],
-    [
-        'section_name.required' =>  ' إسم القسم مسجل مسبقا',
-        'section_name.required' =>  'يرجى إدخال إسم القسم',
-        'description.required' =>  'يرجى إدخال البيان',
+        $validatedData = $request->validate(
+            [
+                'section_name' => ['required', 'unique:sections', 'max:255'],
+                'description' => ['required'],
+            ],
+            [
+                'section_name.required' =>  ' إسم القسم مسجل مسبقا',
+                'section_name.required' =>  'يرجى إدخال إسم القسم',
+                'description.required' =>  'يرجى إدخال البيان',
 
-    ]);
-
-
-
-            sections::create([
-                'section_name' => $request->section_name,
-                'description' => $request->description,
-                'Created_by' => (Auth::user()->name),
-
-            ]);
-            session()->flash('Add', 'تم إضافة القسم بنجاح');
-            return redirect('/section');
-        }
+            ]
+        );
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\sections  $sections
-     * @return \Illuminate\Http\Response
-     */
-    public function show(sections $sections)
-    {
-        //
+
+        sections::create([
+            'section_name' => $request->section_name,
+            'description' => $request->description,
+            'Created_by' => (Auth::user()->name),
+
+        ]);
+        session()->flash('Add', 'تم إضافة القسم بنجاح');
+        return redirect('/section');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\sections  $sections
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(sections $sections)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -101,13 +82,13 @@ class SectionsController extends Controller
 
         $this->validate($request, [
 
-            'section_name' => 'required|max:255|unique:sections,section_name,'.$id,
+            'section_name' => 'required|max:255|unique:sections,section_name,' . $id,
             'description' => 'required',
-        ],[
+        ], [
 
-            'section_name.required' =>'يرجي ادخال اسم القسم',
-            'section_name.unique' =>'اسم القسم مسجل مسبقا',
-            'description.required' =>'يرجي ادخال البيان',
+            'section_name.required' => 'يرجي ادخال اسم القسم',
+            'section_name.unique' => 'اسم القسم مسجل مسبقا',
+            'description.required' => 'يرجي ادخال البيان',
 
         ]);
 
@@ -117,9 +98,8 @@ class SectionsController extends Controller
             'description' => $request->description,
         ]);
 
-        session()->flash('edit','تم تعديل القسم بنجاج');
+        session()->flash('edit', 'تم تعديل القسم بنجاج');
         return redirect('/section');
-        // echo "bonjour tous";
     }
 
     /**
@@ -132,7 +112,7 @@ class SectionsController extends Controller
     {
         $id = $request->id;
         sections::find($id)->delete();
-        session()->flash('delete','تم حذف القسم بنجاح');
+        session()->flash('delete', 'تم حذف القسم بنجاح');
         return redirect('/section');
     }
 }
