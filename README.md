@@ -10,14 +10,15 @@
 # Project Setup Guide
 
 ## Overview
-An MQTT Client built with [Laravel](https://laravel.com/), [Livewire](https://laravel-livewire.com/) and [WebSockets](https://en.wikipedia.org/wiki/WebSocket), providing a set of features:
+An MQTT Client built with [Laravel](https://laravel.com/), providing a set of features:
+
 
 - A full-featured login system (login, register, email verification, profile update, and password reset).
 - The ability to create, manage and use multiple connections to different brokers (public/private).
 - The ability to subscribe and manage different topics on each connection with real-time updates.
 - Logs that display all the received payloads and the ability to search, filter, and delete them.
 
-![app showcase](imgs/app.png)
+![app showcase](public/assets/img/Capture1.PNG)
 
 ## Manual Setup
 > You can avoid this configurational step by using the [Docker installation process](#docker-setup).
