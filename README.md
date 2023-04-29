@@ -3,7 +3,7 @@
 
 A management dashboard for a debt collection company for banks using [Laravel](https://laravel.com/) as a framework.
 
-The dashboard only supports the Arabic language, providing a set of features:
+The dashboard **only supports the Arabic language**, providing a set of features:
 
 - View statistics for total invoices.
 
@@ -111,11 +111,8 @@ php artisan migrate
 ```
 
 ### Running the project
-
+```bash
 Start MySQL server
-```
-
-Start MailHog
 ```
 
 Start the built-in web server
