@@ -1,8 +1,7 @@
 # Project Setup Guide
-Project configuration guide.
 
 ## Overview
-Administrative dashboard for a debt company system responsible for collecting debt from banks using [Laravel](https://laravel.com/) as a framework.
+A management dashboard for a debt collection company for banks using [Laravel](https://laravel.com/) as a framework.
 
 The dashboard only supports the Arabic language, providing a set of features:
 
@@ -18,16 +17,19 @@ The dashboard only supports the Arabic language, providing a set of features:
 
 ![app showcase](public/assets/img/Capture1.PNG)
 <br>
+![app showcase](public/assets/img/Capture.PNG)
+<br>
 ![app showcase](public/assets/img/Capture7.PNG)
 <br><br>
 ![app showcase](public/assets/img/Capture22.PNG)
 <br><br>
-![app showcase](public/assets/img/Capture45.PNG)
+![app showcase](public/assets/img/Capture444.PNG)
 <br><br>
-![app showcase](public/assets/img/Capture44.PNG)
+![app showcase](public/assets/img/Capture7899.PNG)
+![app showcase](public/assets/img/Capture456.PNG)
 ![app showcase](public/assets/img/Capturejjjj.PNG)
 ![app showcase](public/assets/img/Capture77.PNG)
-![app showcase](public/assets/img/Capture7899.PNG)
+
 
 ## Manual Setup
 Before setting up the project, make sure you have the required dependencies:
@@ -73,6 +75,28 @@ DB_PASSWORD=# your password
 
 MAIL_HOST=127.0.0.1 # old value: mailhog
 ```
+
+Install maatwebsite/excel package.
+ You can install Laravel Excel via composer.
+```bash
+composer require maatwebsite/excel
+```
+You can have the following code placed inside the config/app.php file.
+```bash
+'providers' => [
+  Maatwebsite\Excel\ExcelServiceProvider::class,
+ ],  
+
+'aliases' => [ 
+  'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+], 
+```
+Execute the vendor, publish the command, and publish the config.
+```bash
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config
+```
+This will create a new config file named config/excel.php.
+
 
 Create the database schema and its tables by running the migrations
 ```bash
