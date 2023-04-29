@@ -1,31 +1,29 @@
-
 # Project Setup Guide
-After one month of self-learning, I was able to build an admin dashboard for debt companies system that is responsible for collecting debt for the banks using “Laravel” as a framework.
-The Dashboard supports Arabic language only, and can do the following services:
-• View statistics for total bills.
-• “Invoices” section:  this section can view, add, edit, archive, print, or change the status of payment for paid, unpaid and partially paid invoices.
-• “Sections” section: this section can view, add, edit, or delete a bank.
-• “Products” section: this section can view, add, edit, or delete a service from the services that the banks can provide.
-• “Reports” section: this section can search for type or number of specific invoice, a specific date or a specific section.
-• “Roles and Permissions” section: this section can add many types of users with specific permissions; view or edit those permissions with the ability of change the status of the users from “Active” to “Inactive”. 
-• “Notifications” section: this section show the notifications of the invoices that has been added recently.
+Project configuration guide.
+
 ## Overview
-An MQTT Client built with [Laravel](https://laravel.com/), providing a set of features:
+Administrative dashboard for a debt company system responsible for collecting debt from banks using [Laravel](https://laravel.com/) as a framework.
 
+The dashboard only supports the Arabic language, providing a set of features:
 
-- A full-featured login system (login, register, email verification, profile update, and password reset).
-- The ability to create, manage and use multiple connections to different brokers (public/private).
-- The ability to subscribe and manage different topics on each connection with real-time updates.
-- Logs that display all the received payloads and the ability to search, filter, and delete them.
+- View statistics for total invoices.
+<br>
+- Section "Invoices": this section allows you to view, add, edit, archive, print, or change the payment status of paid, unpaid, and partially paid invoices.
+<br>
+- Section " Sections ": this section allows you to view, add, modify, or delete a bank.
+- Products" section: this section allows you to view, add, modify, or delete a service among the services that the banks can offer.
+- Section "Reports": this section can search for the type or number of specific invoices, a specific date, or a specific section.
+- Section "Roles and Permissions": this section can add many types of users with specific permissions; display or modify these permissions with the ability to change the status of users from "Active" to "Inactive".
+- Notifications section: this section displays notifications of invoices that have been added recently.
 
 ![app showcase](public/assets/img/Capture1.PNG)
 <br>
 ![app showcase](public/assets/img/Capture7.PNG)
-<br>
+<br><br>
 ![app showcase](public/assets/img/Capture22.PNG)
-<br>
+<br><br>
 ![app showcase](public/assets/img/Capture45.PNG)
-<br>
+<br><br>
 ![app showcase](public/assets/img/Capture44.PNG)
 ![app showcase](public/assets/img/Capturejjjj.PNG)
 ![app showcase](public/assets/img/Capture77.PNG)
@@ -39,6 +37,7 @@ Before setting up the project, make sure you have the required dependencies:
 - **MySQL**
 - **MailHog**
 - **Excel**
+- **Free Template**
 
 ### Setting the project
 Make sure you are in the `src` directory
@@ -75,14 +74,6 @@ DB_PASSWORD=# your password
 MAIL_HOST=127.0.0.1 # old value: mailhog
 ```
 
-Update the `package.json` file by swapping the `scripts` section with the one below
-```json
-"scripts": {
-    "dev": "vite",
-    "build": "vite build"
-},
-```
-
 Create the database schema and its tables by running the migrations
 ```bash
 php artisan migrate
@@ -92,12 +83,8 @@ php artisan migrate
 
 Start MySQL server
 ```
-sudo systemctl start mysql
-```
 
 Start MailHog
-```
-~/go/bin/MailHog
 ```
 
 Start the built-in web server
