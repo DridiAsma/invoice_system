@@ -1,34 +1,41 @@
 # Project Setup Guide
-
 ## Overview
+
 A management dashboard for a debt collection company for banks using [Laravel](https://laravel.com/) as a framework.
 
 The dashboard only supports the Arabic language, providing a set of features:
 
 - View statistics for total invoices.
-<br>
+
 - Section "Invoices": this section allows you to view, add, edit, archive, print, or change the payment status of paid, unpaid, and partially paid invoices.
-<br>
+
 - Section " Sections ": this section allows you to view, add, modify, or delete a bank.
+
 - Products" section: this section allows you to view, add, modify, or delete a service among the services that the banks can offer.
+
 - Section "Reports": this section can search for the type or number of specific invoices, a specific date, or a specific section.
+
 - Section "Roles and Permissions": this section can add many types of users with specific permissions; display or modify these permissions with the ability to change the status of users from "Active" to "Inactive".
+
 - Notifications section: this section displays notifications of invoices that have been added recently.
 
 ![app showcase](public/assets/img/Capture1.PNG)
 <br>
+![app showcase](public/assets/img/Capture7.PNG)
+<br>
 ![app showcase](public/assets/img/Capture.PNG)
 <br>
-![app showcase](public/assets/img/Capture7.PNG)
-<br><br>
 ![app showcase](public/assets/img/Capture22.PNG)
-<br><br>
+<br>
 ![app showcase](public/assets/img/Capture444.PNG)
 <br><br>
 ![app showcase](public/assets/img/Capture7899.PNG)
+<br>
 ![app showcase](public/assets/img/Capture456.PNG)
-![app showcase](public/assets/img/Capturejjjj.PNG)
+<br>
 ![app showcase](public/assets/img/Capture77.PNG)
+<br>
+![app showcase](public/assets/img/Capturejjjj.PNG)
 
 
 ## Manual Setup
